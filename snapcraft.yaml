@@ -27,11 +27,14 @@ apps:
     command: desktop-launch gnome-logs
     plugs:
       - log-observe
+      - desktop
+      - desktop-legacy
       - network
       - x11
       - home
       - gsettings
       - unity7
+      - wayland
     desktop: usr/share/applications/org.gnome.Logs.desktop
     environment:
       GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
