@@ -41,8 +41,62 @@ apps:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/lib/gnome-logs
 
 parts:
-  gnome-logs:
+  libsystemd:
     after: [desktop-gnome-platform]
+    source: https://github.com/systemd/systemd
+    source-type: git
+    #source-branch: master
+    source-tag: v232
+    plugin: autotools
+    # workaround the issue described in https://launchpad.net/bugs/1583250
+    configflags: [--prefix=/usr, --disable-tests, --disable-maintainer-mode, --disable-dependency-tracking, --disable-man, --disable-appstream-util]
+    organize:
+      snap/gnome-logs/current/usr: usr
+    build-packages:
+      - pkg-config
+      - xsltproc
+      - docbook-xsl
+      - docbook-xml
+      - m4
+      - intltool
+      - gperf
+      - gnu-efi
+      - libcap-dev
+      - libpam0g-dev
+      - libapparmor-dev
+      - libidn11-dev
+      - iptables-dev
+      - libaudit-dev
+      - libdbus-1-dev
+      - libcryptsetup-dev
+      - libselinux1-dev
+      - libacl1-dev
+      - liblzma-dev
+      - liblz4-dev
+      - liblz4-tool
+      - libbz2-dev
+      - zlib1g-dev
+      - libcurl4-gnutls-dev
+      - libmicrohttpd-dev
+      - libgnutls28-dev
+      - libgcrypt20-dev
+      - libkmod-dev
+      - libblkid-dev
+      - libmount-dev
+      - libseccomp-dev
+      - libdw-dev
+      - libpolkit-gobject-1-dev
+      - linux-base
+      - acl
+      - python3
+      - python3-lxml
+      - python3-pyparsing
+      - tzdata
+      - libcap2-bin
+      - iproute2
+
+  gnome-logs:
+    after: [libsystemd]
     source: https://git.gnome.org/browse/gnome-logs
     source-type: git
     #source-branch: master
@@ -65,10 +119,7 @@ parts:
       - intltool
       - libglib2.0-dev
       - libgtk-3-dev
-      - libsystemd-dev
       - yelp-tools
-    stage-packages:
-      - libsystemd0
 
   # workaround snapcraft trying to outsmart us by copying ldd listed libraries
   workaround:
