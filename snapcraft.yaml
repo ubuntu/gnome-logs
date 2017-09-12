@@ -30,7 +30,6 @@ apps:
       - desktop
       - desktop-legacy
       - network
-      - x11
       - home
       - gsettings
       - unity7
