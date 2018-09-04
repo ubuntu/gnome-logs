@@ -1,5 +1,5 @@
 name: gnome-logs
-version: 3.29.4
+version: 3.30.0
 summary: A log viewer for the systemd journal
 description: |
   Logs makes it easy to view and filter log messages and events.
@@ -110,7 +110,7 @@ parts:
     after: [libsystemd]
     source: https://gitlab.gnome.org/GNOME/gnome-logs.git
     source-type: git
-    source-tag: gnome-logs-3.29.4
+    source-tag: gnome-logs-3.30.0
     plugin: autotools
     configflags: [--prefix=/snap/gnome-logs/current/usr]
     organize:
