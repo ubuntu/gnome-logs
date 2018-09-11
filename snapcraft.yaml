@@ -115,11 +115,6 @@ parts:
     configflags: [--prefix=/snap/gnome-logs/current/usr]
     organize:
       snap/gnome-logs/current/usr: usr
-    override-build: |
-      sed -i.bak -e 's|=gnome-logs$|=${SNAP}/meta/gui/gnome-logs.png|g' data/org.gnome.Logs.desktop.in
-      snapcraftctl build
-      mkdir -p $SNAPCRAFT_PART_INSTALL/meta/gui/
-      cp ../src/data/icons/512x512/gnome-logs.png $SNAPCRAFT_PART_INSTALL/meta/gui/
     build-attributes: ['no-system-libraries']
     build-packages:
       - appstream-util
