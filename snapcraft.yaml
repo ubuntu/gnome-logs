@@ -87,6 +87,7 @@ parts:
       snapcraftctl pull
       snapcraftctl set-version $(git describe --tags --abbrev=10 | sed -e s/gnome-logs-//g)
       sed -i.bak -e 's|=org.gnome.Logs$|=${SNAP}/meta/gui/org.gnome.Logs.svg|g' data/org.gnome.Logs.desktop.in
+      sed -i.bak -e 's|symlink_media: true|symlink_media: false|g' help/meson.build
     override-build: |
       snapcraftctl build
       mkdir -p $SNAPCRAFT_PART_INSTALL/meta/gui/
