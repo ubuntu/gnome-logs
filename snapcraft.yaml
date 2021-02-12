@@ -34,7 +34,7 @@ parts:
   gnome-logs:
     source: https://gitlab.gnome.org/GNOME/gnome-logs.git
     source-type: git
-    source-tag: gnome-logs-3.34.0
+    source-tag: gnome-logs-3.36.0
     plugin: meson
     meson-parameters: [--prefix=/usr]
     organize:
