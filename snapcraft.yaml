@@ -8,7 +8,7 @@ description: |
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
-base: core20
+base: core22
 
 slots:
   # for GtkApplication registration
@@ -19,7 +19,7 @@ slots:
 
 apps:
   gnome-logs:
-    extensions: [gnome-3-38]
+    extensions: [gnome]
     command: usr/bin/gnome-logs
     plugs:
       - log-observe
@@ -32,36 +32,36 @@ parts:
   gnome-logs:
     source: https://gitlab.gnome.org/GNOME/gnome-logs.git
     source-type: git
-    source-tag: gnome-logs-3.36.0
+    source-tag: 'gnome-logs-42.0'
     plugin: meson
-    meson-parameters: [--prefix=/usr]
-    organize:
-      snap/gnome-logs/current/usr: usr
+    meson-parameters:
+      - --prefix=/usr
     build-packages:
       - libsystemd-dev
     override-pull: |
-      snapcraftctl pull
-      snapcraftctl set-version $(git describe --tags --abbrev=10 | sed -e s/gnome-logs-//g)
+      craftctl default
+      craftctl set version=$(git describe --tags --abbrev=10 | sed -e s/gnome-logs-//g)
       sed -i.bak -e 's|=org.gnome.Logs$|=${SNAP}/meta/gui/org.gnome.Logs.svg|g' data/org.gnome.Logs.desktop.in
       sed -i.bak -e 's|symlink_media: true|symlink_media: false|g' help/meson.build
     override-build: |
-      snapcraftctl build
-      mkdir -p $SNAPCRAFT_PART_INSTALL/meta/gui/
-      cp ../src/data/icons/scalable/org.gnome.Logs.svg $SNAPCRAFT_PART_INSTALL/meta/gui/
+      craftctl default
+      mkdir -p $CRAFT_PART_INSTALL/meta/gui/
+      cp ../src/data/icons/scalable/org.gnome.Logs.svg $CRAFT_PART_INSTALL/meta/gui/
 
   libraries:
+    after: [ gnome-logs ]
     plugin: nil
     prime:
-      - "-*"
+      - -"*"
 
   # Find files provided by the base and platform snap and ensure they aren't
   # duplicated in this snap
   cleanup:
     after: [libraries]
     plugin: nil
-    build-snaps: [core20, gnome-3-38-2004]
+    build-snaps: [core22, gnome-42-2204]
     override-prime: |
       set -eux
-      for snap in "core20" "gnome-3-38-2004"; do
-        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+      for snap in "core22" "gnome-42-2204"; do
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$CRAFT_PRIME/{}" \;
       done
