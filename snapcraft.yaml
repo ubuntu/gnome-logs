@@ -34,6 +34,7 @@ parts:
     source-type: git
     source-tag: 'gnome-logs-42.0'
     plugin: meson
+    parse-info: [usr/share/metainfo/org.gnome.Logs.appdata.xml]
     meson-parameters:
       - --prefix=/usr
     build-packages:
