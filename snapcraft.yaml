@@ -49,16 +49,10 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/meta/gui/
       cp ../src/data/icons/scalable/org.gnome.Logs.svg $CRAFT_PART_INSTALL/meta/gui/
 
-  libraries:
-    after: [ gnome-logs ]
-    plugin: nil
-    prime:
-      - -"*"
-
   # Find files provided by the base and platform snap and ensure they aren't
   # duplicated in this snap
   cleanup:
-    after: [libraries]
+    after: [gnome-logs]
     plugin: nil
     build-snaps: [core22, gnome-42-2204]
     override-prime: |
