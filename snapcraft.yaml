@@ -33,6 +33,11 @@ parts:
     source: https://gitlab.gnome.org/GNOME/gnome-logs.git
     source-type: git
     source-tag: 'gnome-logs-42.0'
+    source-depth: 1
+# ext:updatesnap
+#   version-format:
+#     lower-than: '44'
+#     format: "gnome-logs-%M.%m"
     plugin: meson
     parse-info: [usr/share/metainfo/org.gnome.Logs.appdata.xml]
     meson-parameters:
