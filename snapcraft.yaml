@@ -32,7 +32,7 @@ parts:
   gnome-logs:
     source: https://gitlab.gnome.org/GNOME/gnome-logs.git
     source-type: git
-    source-tag: 'gnome-logs-42.0'
+    source-tag: 'gnome-logs-43.0'
     source-depth: 1
 # ext:updatesnap
 #   version-format:
