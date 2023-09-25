@@ -36,7 +36,7 @@ parts:
     source-depth: 1
 # ext:updatesnap
 #   version-format:
-#     lower-than: '44'
+#     lower-than: '46'
 #     format: "gnome-logs-%M.%m"
     plugin: meson
     parse-info: [usr/share/metainfo/org.gnome.Logs.appdata.xml]
