@@ -8,7 +8,7 @@ description: |
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
-base: core22
+base: core24
 
 slots:
   # for GtkApplication registration
@@ -59,9 +59,9 @@ parts:
   cleanup:
     after: [gnome-logs]
     plugin: nil
-    build-snaps: [core22, gnome-42-2204]
+    build-snaps: [core24, gnome-46-2404]
     override-prime: |
       set -eux
-      for snap in "core22" "gnome-42-2204"; do
+      for snap in "core24" "gnome-46-2404"; do
         cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$CRAFT_PRIME/{}" \;
       done
